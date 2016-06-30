@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="January 2016"
         android:id="@+id/monthyear"
         android:textSize="25dp"
         android:layout_alignParentTop="true"

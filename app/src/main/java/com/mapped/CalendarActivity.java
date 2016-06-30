@@ -14,8 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity
@@ -48,6 +50,7 @@ public class CalendarActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        TextView weekday = (TextView) findViewById(R.id.monthyear);
 
         events.add(new EventDay());
         events.add(new EventDay());
@@ -56,6 +59,42 @@ public class CalendarActivity extends AppCompatActivity
         CalendarAdapter calendarAdapter = new CalendarAdapter(this, R.layout.calendar_item, events);
         ListView lv = (ListView) findViewById(R.id.maincalendar);
         lv.setAdapter(calendarAdapter);
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                // Current day is Sunday
+                weekday.setText("SUN");
+                break;
+
+            case Calendar.MONDAY:
+                weekday.setText("MON");
+                break;
+                // Current day is Monday
+
+            case Calendar.TUESDAY:
+                weekday.setText("TUE");
+                break;
+
+            case Calendar.WEDNESDAY:
+                weekday.setText("WED");
+                break;
+
+            case Calendar.THURSDAY:
+                weekday.setText("THU");
+                break;
+
+            case Calendar.FRIDAY:
+                weekday.setText("FRI");
+                break;
+
+            case Calendar.SATURDAY:
+                weekday.setText("SAT");
+                break;
+        }
+
 
 
     }

@@ -28,25 +28,32 @@ public class EventDay {
             case Calendar.SUNDAY:
                 // Current day is Sunday
                 dayofweek = "SUN";
+                break;
 
             case Calendar.MONDAY:
                 dayofweek = "MON";
+                break;
                 // Current day is Monday
 
             case Calendar.TUESDAY:
                 dayofweek = "TUE";
+                break;
 
             case Calendar.WEDNESDAY:
                 dayofweek = "WED";
+                break;
 
             case Calendar.THURSDAY:
                 dayofweek = "THU";
+                break;
 
             case Calendar.FRIDAY:
                 dayofweek = "FRI";
+                break;
 
             case Calendar.SATURDAY:
                 dayofweek = "SAT";
+                break;
         }
 
         startTime[0] = "11:00AM";
