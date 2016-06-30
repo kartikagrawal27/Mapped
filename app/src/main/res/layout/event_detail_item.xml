@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="10dp"
+        android:layout_height="90dp"
+        android:background="@color/socialEvents"
+        android:id="@+id/eventColorCode"
+        android:orientation="horizontal">
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@color/turquoise"
+        android:id="@+id/eventTimes"
+        android:layout_toRightOf="@id/eventColorCode">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/timeSeparator"
+            android:layout_centerHorizontal="true"
+            android:text="11:00AM"
+            android:textColor="#ffffffff"
+            android:textSize="20dp"
+            android:id="@+id/startTime"
+            android:textAlignment="center"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_marginTop="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="25dp"
+            android:id="@+id/timeSeparator"
+            android:layout_marginBottom="1dp"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timeSeparator"
+            android:layout_centerHorizontal="true"
+            android:text="1:30PM"
+            android:textColor="#ffffffff"
+            android:textSize="20dp"
+            android:id="@+id/endTime"
+            android:textAlignment="center"
+            android:gravity="center"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0.8dp"
+        android:layout_height="90dp"
+        android:background="#b9b9b9"
+        android:id="@+id/separator1"
+        android:layout_toRightOf="@id/eventTimes">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="90dp"
+        android:background="@color/turquoise"
+        android:id="@+id/mainEventDetails"
+        android:layout_toRightOf="@id/separator1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Apple Workshop"
+            android:textSize="20dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#ffffffff"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventLocation"
+            android:text="SIEBL 1001"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/eventName"
+            android:textColor="#e7e7e7"
+            android:layout_marginBottom="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventPresenter"
+            android:text="Tim Cook"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/eventLocation"
+            android:textColor="#e7e7e7"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0.8dp"
+        android:layout_height="90dp"
+        android:background="#b9b9b9"
+        android:id="@+id/separator2"
+        android:layout_toRightOf="@id/mainEventDetails">
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_toRightOf="@id/separator2"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/greyishBackground">
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/greyishBackground"
+            android:text="Delete"
+            android:textColor="#ffffffff"
+            android:textSize="9dp"
+            android:textAllCaps="true"
+            android:rotation="-90" />
+    </LinearLayout>
+
+</RelativeLayout>
