@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+
+
         bgview.setVideoURI(bguri);
         bgview.start();
 

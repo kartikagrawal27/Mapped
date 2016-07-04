@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "261428208074",
+    "firebase_url": "https://mapped-cc2e9.firebaseio.com",
+    "project_id": "mapped-cc2e9",
+    "storage_bucket": "mapped-cc2e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261428208074:android:d582002e39e8f950",
+        "android_client_info": {
+          "package_name": "com.mapped"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261428208074-8dtd6efoi6v35vtq3499dmdnegf91fm6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU-Dt2pBJH-B0AgVTe-3Qz3ne_UwFi7zg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

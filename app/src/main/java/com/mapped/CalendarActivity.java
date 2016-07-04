@@ -1,6 +1,5 @@
 package com.mapped;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,8 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,10 +25,11 @@ import java.util.List;
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private List<EventDay> events = new ArrayList<>();
+    private List<CalendarDay> calEvents = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_calendar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Calendar");
@@ -50,52 +53,31 @@ public class CalendarActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        ImageView more_icon = (ImageView) findViewById(R.id.moreevents);
+
+
         TextView weekday = (TextView) findViewById(R.id.monthyear);
 
-        events.add(new EventDay());
-        events.add(new EventDay());
-        events.add(new EventDay());
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(this, R.layout.calendar_item, events);
+        calEvents.add(new CalendarDay(0));
+        calEvents.add(new CalendarDay(1));
+        calEvents.add(new CalendarDay(2));
+        calEvents.add(new CalendarDay(3));
+        calEvents.add(new CalendarDay(4));
+        calEvents.add(new CalendarDay(5));
+        calEvents.add(new CalendarDay(6));
+
+
+
+
+
+
+
+
+
+        CalendarAdapter calendarAdapter = new CalendarAdapter(this, R.layout.calendar_item, calEvents);
         ListView lv = (ListView) findViewById(R.id.maincalendar);
         lv.setAdapter(calendarAdapter);
-
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-        switch (day) {
-            case Calendar.SUNDAY:
-                // Current day is Sunday
-                weekday.setText("SUN");
-                break;
-
-            case Calendar.MONDAY:
-                weekday.setText("MON");
-                break;
-                // Current day is Monday
-
-            case Calendar.TUESDAY:
-                weekday.setText("TUE");
-                break;
-
-            case Calendar.WEDNESDAY:
-                weekday.setText("WED");
-                break;
-
-            case Calendar.THURSDAY:
-                weekday.setText("THU");
-                break;
-
-            case Calendar.FRIDAY:
-                weekday.setText("FRI");
-                break;
-
-            case Calendar.SATURDAY:
-                weekday.setText("SAT");
-                break;
-        }
-
-
 
     }
 
