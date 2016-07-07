@@ -50,10 +50,18 @@
             android:textColor="#ffffffff"
             android:layout_marginRight="10dp" />
 
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toRightOf="@id/starttime1"
+            android:layout_alignTop="@id/starttime1"
+            android:id="@+id/colorCode1"
+            android:layout_marginRight="10dp"/>
+
         <TextView
             android:layout_width="230dp"
             android:layout_height="18dp"
-            android:layout_toRightOf="@id/starttime1"
+            android:layout_toRightOf="@id/colorCode1"
             android:layout_alignTop="@+id/starttime1"
             android:textColor="#ffffffff"
             android:id="@+id/eventname1"/>
@@ -70,10 +78,18 @@
             android:textColor="#ffffffff"
             android:layout_marginRight="10dp"/>
 
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toRightOf="@id/starttime2"
+            android:layout_alignTop="@id/starttime2"
+            android:id="@+id/colorCode2"
+            android:layout_marginRight="10dp"/>
+
         <TextView
             android:layout_width="230dp"
             android:layout_height="18dp"
-            android:layout_toRightOf="@id/starttime2"
+            android:layout_toRightOf="@id/colorCode2"
             android:layout_alignTop="@+id/starttime2"
             android:textColor="#ffffffff"
             android:id="@+id/eventname2"/>
@@ -90,22 +106,21 @@
             android:textColor="#ffffffff"
             android:layout_marginRight="10dp"/>
 
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toRightOf="@id/starttime3"
+            android:layout_alignTop="@id/starttime3"
+            android:id="@+id/colorCode3"
+            android:layout_marginRight="10dp"/>
+
         <TextView
             android:layout_width="230dp"
             android:layout_height="18dp"
-            android:layout_toRightOf="@id/starttime3"
+            android:layout_toRightOf="@id/colorCode3"
             android:layout_alignTop="@+id/starttime3"
             android:textColor="#ffffffff"
             android:id="@+id/eventname3"/>
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="15dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:textColor="#ffffffff"
-            android:id="@+id/moreevents"/>
-
 
 
     </RelativeLayout>

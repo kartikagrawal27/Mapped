@@ -2,9 +2,8 @@ package com.mapped;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,27 +11,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private List<CalendarDay> calEvents = new ArrayList<>();
+    List<String> user_subscribed_events;
+    CalendarAdapter calendarAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_calendar);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Calendar");
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Timeline");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -53,32 +60,37 @@ public class CalendarActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView more_icon = (ImageView) findViewById(R.id.moreevents);
+        calendarAdapter = new CalendarAdapter(this, R.layout.calendar_item, calEvents);
 
+        Firebase ref = new Firebase("https://mapped-cc2e9.firebaseio.com/users/user_001");
 
-        TextView weekday = (TextView) findViewById(R.id.monthyear);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                UserInfo myUser = dataSnapshot.getValue(UserInfo.class);
+                user_subscribed_events = myUser.getSubscribed_events();
 
-        calEvents.add(new CalendarDay(0));
-        calEvents.add(new CalendarDay(1));
-        calEvents.add(new CalendarDay(2));
-        calEvents.add(new CalendarDay(3));
-        calEvents.add(new CalendarDay(4));
-        calEvents.add(new CalendarDay(5));
-        calEvents.add(new CalendarDay(6));
+                calEvents.add(new CalendarDay(0, user_subscribed_events, calendarAdapter));
+                calEvents.add(new CalendarDay(1, user_subscribed_events, calendarAdapter));
+                calEvents.add(new CalendarDay(2, user_subscribed_events, calendarAdapter));
+                calEvents.add(new CalendarDay(3, user_subscribed_events, calendarAdapter));
+                calEvents.add(new CalendarDay(4, user_subscribed_events, calendarAdapter));
+                calEvents.add(new CalendarDay(5, user_subscribed_events, calendarAdapter));
+                calEvents.add(new CalendarDay(6, user_subscribed_events, calendarAdapter));
+                asjask();
+            }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
+    }
 
-
-
-
-
-
-
-
-        CalendarAdapter calendarAdapter = new CalendarAdapter(this, R.layout.calendar_item, calEvents);
+    public void asjask() {
         ListView lv = (ListView) findViewById(R.id.maincalendar);
         lv.setAdapter(calendarAdapter);
-
     }
 
     @Override
@@ -93,7 +105,6 @@ public class CalendarActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.calendar, menu);
         return true;
     }

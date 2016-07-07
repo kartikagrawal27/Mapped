@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -32,6 +33,14 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
         String finalday = getCurrentDay(position);
 
         CalendarDay calendarDay = calendarDayList.get(position);
+        notifyDataSetChanged();
+
+        ImageView colorCode1 = (ImageView) convertView.findViewById(R.id.colorCode1);
+        ImageView colorCode2 = (ImageView) convertView.findViewById(R.id.colorCode2);
+        ImageView colorCode3 = (ImageView) convertView.findViewById(R.id.colorCode3);
+
+
+
         String starttimes[] = calendarDay.getStartTime();
         String eventnames[] = calendarDay.getEventName();
 
