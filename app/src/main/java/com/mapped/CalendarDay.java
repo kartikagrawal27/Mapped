@@ -19,8 +19,7 @@ public class CalendarDay {
 
     private String startTime[] = new String[3];
     private String eventName[] = new String[3];
-
-    private List<String> user_subsribed_events;
+    private String eventType[] = new String[3];
 
     public String[] getStartTime() {
         return startTime;
@@ -94,6 +93,7 @@ public class CalendarDay {
 
                         String event_name = eventId.getKey();
 
+
                         if (user_subsribed_events.contains(event_name)) {
 
                             EventInfo event = eventId.getValue(EventInfo.class);
@@ -103,6 +103,7 @@ public class CalendarDay {
                                 if (days.contains(finalDayofweek)) {
                                     startTime[count] = event.getStart_time();
                                     eventName[count] = event.getName();
+                                    eventType[count] = event.getEvent_type();
                                     count = count + 1;
                                     if (count > 2)
                                         break;
@@ -113,6 +114,7 @@ public class CalendarDay {
                                 if (date == thisDay) {
                                     startTime[count] = event.getStart_time();
                                     eventName[count] = event.getName();
+                                    eventType[count] = event.getEvent_type();
                                     count = count + 1;
                                     if (count > 2)
                                         break;
@@ -127,6 +129,7 @@ public class CalendarDay {
                     for (int tempcount = count; tempcount < 3; tempcount++) {
                         startTime[tempcount] = "";
                         eventName[tempcount] = "";
+                        eventType[tempcount] = "";
                     }
                 }
                 calendarAdapter.notifyDataSetChanged();
@@ -140,4 +143,7 @@ public class CalendarDay {
     }
 
 
+    public String[] getEventType() {
+        return eventType;
+    }
 }
