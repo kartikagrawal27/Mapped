@@ -1,5 +1,7 @@
 package com.mapped;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.Toast;
 
 import com.firebase.client.ChildEventListener;
@@ -16,7 +18,7 @@ import java.util.List;
 /**
  * Created by Pegasus on 6/29/16.
  */
-public class CalendarDay {
+public class CalendarDay implements Parcelable {
 
     private List<String> startTime = new ArrayList<String>();
     private List<String> eventName = new ArrayList<String>();
@@ -24,6 +26,14 @@ public class CalendarDay {
     private List<String> endTime   = new ArrayList<String>();
     private List<String> location  = new ArrayList<String>();
     private List<String> presenterName = new ArrayList<String>();
+
+    public List<String> getPresenterName(){
+        return presenterName;
+    }
+
+    public List<String> getLocation(){
+        return location;
+    }
 
     public List<String> getStartTime() {
         return startTime;
@@ -141,4 +151,43 @@ public class CalendarDay {
     public List<String> getEventType() {
         return eventType;
     }
+
+    public List<String>getEndTime(){
+        return endTime;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(startTime);
+        dest.writeList(eventName);
+        dest.writeList(eventType);
+        dest.writeList(endTime);
+        dest.writeList(location);
+        dest.writeList(presenterName);
+    }
+
+    public CalendarDay(Parcel in) {
+        in.readList(startTime, List.class.getClassLoader());
+        in.readList(eventName, List.class.getClassLoader());
+        in.readList(eventType, List.class.getClassLoader());
+        in.readList(endTime, List.class.getClassLoader());
+        in.readList(location, List.class.getClassLoader());
+        in.readList(presenterName, List.class.getClassLoader());
+    }
+    public static final Parcelable.Creator<CalendarDay> CREATOR = new Parcelable.Creator<CalendarDay>() {
+
+        public CalendarDay createFromParcel(Parcel in) {
+            return new CalendarDay(in);
+        }
+
+        public CalendarDay[] newArray(int size) {
+            return new CalendarDay[size];
+        }
+    };
+
 }

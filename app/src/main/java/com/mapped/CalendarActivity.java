@@ -33,7 +33,6 @@ public class CalendarActivity extends AppCompatActivity
     private List<CalendarDay> calEvents = new ArrayList<>();
     private List<String> user_subscribed_events;
     private CalendarAdapter calendarAdapter;
-    public CalendarDay touchedDay;
 
 
     @Override
@@ -95,7 +94,7 @@ public class CalendarActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CalendarActivity.this, EventDetailsActivity.class);
-                //intent.putExtra("calEvents", (parsable)calEvents.get(position));
+                intent.putExtra("calEvents", calEvents.get(position));
                 startActivity(intent);
 
             }

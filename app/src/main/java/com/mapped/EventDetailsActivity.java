@@ -1,5 +1,6 @@
 package com.mapped;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,8 +15,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class EventDetailsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    List<EventInfo> dayEvents = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,10 @@ public class EventDetailsActivity extends AppCompatActivity
         setContentView(R.layout.activity_event_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Intent intent = getIntent();
+        CalendarDay touchedDay = intent.getParcelableExtra("calEvents");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -42,13 +53,24 @@ public class EventDetailsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        createCustomData(touchedDay);
 
-
-
-        Object[] myobjects = new Object[1];
-        EventDetailsAdapter eventDetailsAdapter = new EventDetailsAdapter(this, R.layout.event_detail_item, myobjects);
+        EventDetailsAdapter eventDetailsAdapter = new EventDetailsAdapter(this, R.layout.event_detail_item, dayEvents);
         ListView lv = (ListView) findViewById(R.id.eventDetails);
         lv.setAdapter(eventDetailsAdapter);
+    }
+
+    public void createCustomData(CalendarDay touchedDay){
+        List<String> startTime = touchedDay.getStartTime();
+        List<String> eventName = touchedDay.getEventName();
+        List<String> endTime = touchedDay.getEndTime();
+        List<String> location = touchedDay.getLocation();
+        List<String> presenterName = touchedDay.getPresenterName();
+        List<String> eventType = touchedDay.getEventType();
+
+        for(int i=0;i<startTime.size();i++){
+            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i), null, startTime.get(i), endTime.get(i), eventName.get(i)));
+        }
     }
 
     @Override

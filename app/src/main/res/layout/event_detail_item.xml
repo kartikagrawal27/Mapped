@@ -26,7 +26,7 @@
             android:text="11:00AM"
             android:textColor="#ffffffff"
             android:textSize="15dp"
-            android:id="@+id/startTime"
+            android:id="@+id/startTimeD"
             android:textAlignment="center"
             android:gravity="center"/>
 
@@ -49,7 +49,7 @@
             android:text="1:30PM"
             android:textColor="#ffffffff"
             android:textSize="15dp"
-            android:id="@+id/endTime"
+            android:id="@+id/endTimeD"
             android:textAlignment="center"
             android:gravity="center"/>
     </RelativeLayout>
@@ -73,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/eventName"
+            android:id="@+id/eventNameD"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:text="Apple Workshop"
@@ -84,20 +84,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/eventLocation"
+            android:id="@+id/eventLocationD"
             android:text="SIEBL 1001"
             android:layout_marginLeft="10dp"
-            android:layout_below="@id/eventName"
+            android:layout_below="@id/eventNameD"
             android:textColor="#e7e7e7"
             android:layout_marginBottom="5dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/eventPresenter"
+            android:id="@+id/eventPresenterD"
             android:text="Tim Cook"
             android:layout_marginLeft="10dp"
-            android:layout_below="@id/eventLocation"
+            android:layout_below="@id/eventLocationD"
             android:textColor="#e7e7e7"
             />
     </RelativeLayout>

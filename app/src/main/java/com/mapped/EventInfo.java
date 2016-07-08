@@ -15,10 +15,20 @@ public class EventInfo {
     private String end_time;
     private String name;
 
+    public EventInfo(){
 
-public EventInfo(){
+    }
 
-}
+    public EventInfo(String date, String event_type, String location, String presenter_name, List<String> days, String start_time, String end_time, String name) {
+        this.date = date;
+        this.event_type = event_type;
+        this.location = location;
+        this.presenter_name = presenter_name;
+        this.days = days;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.name = name;
+    }
 
     public String getDate() {
         return date;
