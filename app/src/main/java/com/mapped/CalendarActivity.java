@@ -1,5 +1,6 @@
 package com.mapped;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,8 +31,9 @@ public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private List<CalendarDay> calEvents = new ArrayList<>();
-    List<String> user_subscribed_events;
-    CalendarAdapter calendarAdapter;
+    private List<String> user_subscribed_events;
+    private CalendarAdapter calendarAdapter;
+    public CalendarDay touchedDay;
 
 
     @Override
@@ -61,6 +64,7 @@ public class CalendarActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         calendarAdapter = new CalendarAdapter(this, R.layout.calendar_item, calEvents);
+        final ListView lv = (ListView) findViewById(R.id.maincalendar);
 
         Firebase ref = new Firebase("https://mapped-cc2e9.firebaseio.com/users/user_001");
 
@@ -78,7 +82,7 @@ public class CalendarActivity extends AppCompatActivity
                 calEvents.add(new CalendarDay(4, user_subscribed_events, calendarAdapter));
                 calEvents.add(new CalendarDay(5, user_subscribed_events, calendarAdapter));
                 calEvents.add(new CalendarDay(6, user_subscribed_events, calendarAdapter));
-                asjask();
+                lv.setAdapter(calendarAdapter);
             }
 
             @Override
@@ -86,12 +90,19 @@ public class CalendarActivity extends AppCompatActivity
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CalendarActivity.this, EventDetailsActivity.class);
+                //intent.putExtra("calEvents", (parsable)calEvents.get(position));
+                startActivity(intent);
+
+            }
+        });
+
     }
 
-    public void asjask() {
-        ListView lv = (ListView) findViewById(R.id.maincalendar);
-        lv.setAdapter(calendarAdapter);
-    }
 
     @Override
     public void onBackPressed() {

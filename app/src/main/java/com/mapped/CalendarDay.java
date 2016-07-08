@@ -8,6 +8,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -17,15 +18,18 @@ import java.util.List;
  */
 public class CalendarDay {
 
-    private String startTime[] = new String[3];
-    private String eventName[] = new String[3];
-    private String eventType[] = new String[3];
+    private List<String> startTime = new ArrayList<String>();
+    private List<String> eventName = new ArrayList<String>();
+    private List<String> eventType = new ArrayList<String>();
+    private List<String> endTime   = new ArrayList<String>();
+    private List<String> location  = new ArrayList<String>();
+    private List<String> presenterName = new ArrayList<String>();
 
-    public String[] getStartTime() {
+    public List<String> getStartTime() {
         return startTime;
     }
 
-    public String[] getEventName() {
+    public List<String> getEventName() {
         return eventName;
     }
 
@@ -84,8 +88,6 @@ public class CalendarDay {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                int count = 0;
-
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 while(it.hasNext()) {
                     try {
@@ -101,35 +103,28 @@ public class CalendarDay {
 
                                 List<String> days = event.getDays();
                                 if (days.contains(finalDayofweek)) {
-                                    startTime[count] = event.getStart_time();
-                                    eventName[count] = event.getName();
-                                    eventType[count] = event.getEvent_type();
-                                    count = count + 1;
-                                    if (count > 2)
-                                        break;
+                                    startTime.add(event.getStart_time());
+                                    eventName.add(event.getName());
+                                    eventType.add(event.getEvent_type());
+                                    endTime.add(event.getEnd_time());
+                                    location.add(event.getLocation());
+                                    presenterName.add(event.getPresenter_name());
                                 }
                             } else {
                                 String stringDate = event.getDate().substring(2, 4);
                                 int date = Integer.parseInt(stringDate);
                                 if (date == thisDay) {
-                                    startTime[count] = event.getStart_time();
-                                    eventName[count] = event.getName();
-                                    eventType[count] = event.getEvent_type();
-                                    count = count + 1;
-                                    if (count > 2)
-                                        break;
+                                    startTime.add(event.getStart_time());
+                                    eventName.add(event.getName());
+                                    eventType.add(event.getEvent_type());
+                                    endTime.add(event.getEnd_time());
+                                    location.add(event.getLocation());
+                                    presenterName.add(event.getPresenter_name());
                                 }
                             }
                         }
                     } catch(Exception ex){
                         System.out.println(ex);
-                    }
-                }
-                if (count <= 2) {
-                    for (int tempcount = count; tempcount < 3; tempcount++) {
-                        startTime[tempcount] = "";
-                        eventName[tempcount] = "";
-                        eventType[tempcount] = "";
                     }
                 }
                 calendarAdapter.notifyDataSetChanged();
@@ -143,7 +138,7 @@ public class CalendarDay {
     }
 
 
-    public String[] getEventType() {
+    public List<String> getEventType() {
         return eventType;
     }
 }

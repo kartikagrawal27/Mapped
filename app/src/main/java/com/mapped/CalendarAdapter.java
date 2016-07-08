@@ -44,15 +44,15 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
         ImageView colorCode3 = (ImageView) convertView.findViewById(R.id.colorCode3);
 
 
-        String eventType[] = calendarDay.getEventType();
+        List<String> eventType = calendarDay.getEventType();
 
         notifyDataSetChanged();
 
-        if(eventType[0]!=null && eventType[1]!=null && eventType[2]!=null){
+        if(eventType!=null){
 
-                if (!(eventType[0].equals(""))){
+                if (eventType.size()>0){
 
-                    switch (eventType[0]){
+                    switch (eventType.get(0)){
                         case "course":
                             colorCode1.setImageResource(R.drawable.course);
                             break;
@@ -68,9 +68,9 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
                     }
                 }
 
-                if(!eventType[1].equals("")){
+                if(eventType.size()>1){
 
-                    switch (eventType[1]){
+                    switch (eventType.get(1)){
                         case "course":
                             colorCode2.setImageResource(R.drawable.course);
                             break;
@@ -86,8 +86,8 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
                     }
                 }
 
-                if(!eventType[2].equals("")) {
-                    switch (eventType[2]){
+                if(eventType.size()>2) {
+                    switch (eventType.get(2)){
                         case "course":
                             colorCode3.setImageResource(R.drawable.course);
                             break;
@@ -104,10 +104,8 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
                 }
         }
 
-
-
-        String starttimes[] = calendarDay.getStartTime();
-        String eventnames[] = calendarDay.getEventName();
+        List<String> starttimes = calendarDay.getStartTime();
+        List<String> eventnames = calendarDay.getEventName();
 
         TextView dayofweek = (TextView) convertView.findViewById(R.id.day);
         dayofweek.setText(finalday);
@@ -128,17 +126,29 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
         TextView eventname2 = (TextView) convertView.findViewById(R.id.eventname2);
         TextView eventname3 = (TextView) convertView.findViewById(R.id.eventname3);
 
-        starttime1.setText(starttimes[0]);
-        starttime2.setText(starttimes[1]);
-        starttime3.setText(starttimes[2]);
+        if(starttimes!=null) {
+            if (starttimes.size()>0)
+                starttime1.setText(starttimes.get(0));
 
-        eventname1.setText(eventnames[0]);
-        eventname2.setText(eventnames[1]);
-        eventname3.setText(eventnames[2]);
+            if (starttimes.size()>1)
+                starttime2.setText(starttimes.get(1));
 
+            if (starttimes.size()>2)
+                starttime3.setText(starttimes.get(2));
+        }
+
+        if(eventnames!=null) {
+            if (eventnames.size()>0)
+                eventname1.setText(eventnames.get(0));
+
+            if(starttimes.size()>1)
+                eventname2.setText(eventnames.get(1));
+
+            if (starttimes.size()>2)
+                eventname3.setText(eventnames.get(2));
+        }
         return convertView;
     }
-
 
     public String getCurrentDay(int position){
         Calendar calendar = Calendar.getInstance();
@@ -184,6 +194,4 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
 
         return dayofweek;
     }
-
-
 }
