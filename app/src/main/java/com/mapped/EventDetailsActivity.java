@@ -43,6 +43,8 @@ public class EventDetailsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+
+
         Object[] myobjects = new Object[1];
         EventDetailsAdapter eventDetailsAdapter = new EventDetailsAdapter(this, R.layout.event_detail_item, myobjects);
         ListView lv = (ListView) findViewById(R.id.eventDetails);
