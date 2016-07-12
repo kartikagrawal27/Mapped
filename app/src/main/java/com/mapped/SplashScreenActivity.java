@@ -1,18 +1,23 @@
 package com.mapped;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity  {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -85,9 +90,21 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash_screen);
+        ImageView mapped = (ImageView) findViewById(R.id.splash_mapped);
+        mapped.setImageResource(R.drawable.mapped);
+
+
+        TextView heading = (TextView) findViewById(R.id.mappedText);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/BeforeTheRain.ttf");
+        heading.setTypeface(custom_font);
+
+        new gatherSplashInfo().execute();
+
+
 
        // mVisible = true;
 //        mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -160,4 +177,24 @@ public class SplashScreenActivity extends AppCompatActivity {
 //        mHideHandler.removeCallbacks(mHideRunnable);
 //        mHideHandler.postDelayed(mHideRunnable, delayMillis);
 //    }
+
+
+    private class gatherSplashInfo extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
 }

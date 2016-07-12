@@ -1,6 +1,7 @@
 package com.mapped;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -48,17 +50,12 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         super.onCreate(savedInstanceState);
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
-            finish();
-            return;
-        }
-
 
         setContentView(R.layout.activity_login);
 
@@ -79,26 +76,31 @@ public class LoginActivity extends AppCompatActivity {
         bgview.start();
 
         tx = (TextView) findViewById(R.id.Mapped);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/GoodDog.otf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/BeforeTheRain.ttf");
         tx.setTypeface(custom_font);
+
+        ImageView mappedIcon = (ImageView) findViewById(R.id.mappedLogin);
+        mappedIcon.setImageResource(R.drawable.mapped);
+
 
         emailinput = (EditText) findViewById(R.id.emailinput);
         assert emailinput != null;
         emailinput.clearComposingText();
+        final int viewwidth = emailinput.getWidth();
 
         passwordInput = (EditText) findViewById(R.id.loginpassword);
 
         loginbutton = (Button) findViewById(R.id.loginbutton);
 
 
-        fullname = (EditText) findViewById(R.id.fullname);
-        assert fullname != null;
-        final int viewwidth = fullname.getWidth();
+//        fullname = (EditText) findViewById(R.id.fullname);
+//        assert fullname != null;
+//        final int viewwidth = fullname.getWidth();
 
-        fullname.animate()
-                .translationX(fullname.getWidth())
-                .alpha(0.0f)
-                .setDuration(1);
+//        fullname.animate()
+//                .translationX(fullname.getWidth())
+//                .alpha(0.0f)
+//                .setDuration(1);
 
         signupbutton = (Button) findViewById(R.id.signupbutton);
         assert signupbutton != null;
@@ -255,6 +257,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     private void login(String email, String password) {

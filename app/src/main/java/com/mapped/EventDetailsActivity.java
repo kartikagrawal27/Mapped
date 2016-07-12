@@ -1,6 +1,7 @@
 package com.mapped;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +27,7 @@ public class EventDetailsActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

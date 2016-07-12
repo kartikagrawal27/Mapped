@@ -1,16 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_background"
+    android:background="@drawable/citynight"
     tools:context="com.mapped.SplashScreenActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/splash_mapped"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="39dp" />
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:id="@+id/mappedText"
+            android:text="Mapped"
+            android:textSize="50dp"
+            android:gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:textColor="#ffffff"
+            android:paddingRight="20dp"
+            android:layout_below="@id/splash_mapped"
+            android:layout_centerHorizontal="true"/>
 
-</LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
