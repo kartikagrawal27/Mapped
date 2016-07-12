@@ -1,20 +1,28 @@
 package com.mapped;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +31,20 @@ public class LoginActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private VideoView bgview;
+    private TextView tx;
+    private EditText emailinput;
+    private EditText passwordInput;
+    private Button loginbutton;
+    private EditText fullname;
+    private Button signupbutton;
+    private Button alreadyregistered;
+    private Button forgotpasswordbutton;
+    private Button signup;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +54,15 @@ public class LoginActivity extends AppCompatActivity {
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish();
+            return;
+        }
+
+
         setContentView(R.layout.activity_login);
 
-        final VideoView bgview = (VideoView) findViewById(R.id.videoView);
+        bgview = (VideoView) findViewById(R.id.videoView);
 
         String uripath2 = "android.resource://" + getPackageName() + "/" + R.raw.aurora_login_screen;
         Uri bguri = Uri.parse(uripath2);
@@ -47,24 +75,24 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
         bgview.setVideoURI(bguri);
         bgview.start();
 
-        TextView tx = (TextView) findViewById(R.id.Mapped);
+        tx = (TextView) findViewById(R.id.Mapped);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/GoodDog.otf");
         tx.setTypeface(custom_font);
 
-        final EditText emailinput = (EditText) findViewById(R.id.emailinput);
+        emailinput = (EditText) findViewById(R.id.emailinput);
+        assert emailinput != null;
         emailinput.clearComposingText();
 
-        final EditText passwordinput = (EditText) findViewById(R.id.loginpassword);
+        passwordInput = (EditText) findViewById(R.id.loginpassword);
 
-        final Button loginbutton = (Button) findViewById(R.id.loginbutton);
+        loginbutton = (Button) findViewById(R.id.loginbutton);
 
 
-        final EditText fullname = (EditText) findViewById(R.id.fullname);
+        fullname = (EditText) findViewById(R.id.fullname);
+        assert fullname != null;
         final int viewwidth = fullname.getWidth();
 
         fullname.animate()
@@ -72,21 +100,27 @@ public class LoginActivity extends AppCompatActivity {
                 .alpha(0.0f)
                 .setDuration(1);
 
-        final Button signupbutton = (Button) findViewById(R.id.signupbutton);
+        signupbutton = (Button) findViewById(R.id.signupbutton);
+        assert signupbutton != null;
         signupbutton.animate()
                 .translationX(viewwidth)
                 .alpha(0.0f)
                 .setDuration(1);
 
-        final Button alreadyregistered = (Button) findViewById(R.id.alreadyregistered);
+        signupbutton.setVisibility(View.GONE);
+
+        alreadyregistered = (Button) findViewById(R.id.alreadyregistered);
+        assert alreadyregistered != null;
         alreadyregistered.animate()
                 .translationX(viewwidth)
                 .alpha(0.0f)
                 .setDuration(1);
 
-        final Button forgotpasswordbutton = (Button) findViewById(R.id.forgotpasswordbutton);
+        alreadyregistered.setVisibility(View.GONE);
 
-        final Button signup = (Button) findViewById(R.id.signup);
+        forgotpasswordbutton = (Button) findViewById(R.id.forgotpasswordbutton);
+
+        signup = (Button) findViewById(R.id.signup);
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -104,18 +138,20 @@ public class LoginActivity extends AppCompatActivity {
                         .translationX(-(signup.getWidth()))
                         .alpha(0.0f)
                         .setDuration(400);
-                fullname.animate()
-                        .translationX(-(viewwidth))
-                        .alpha(1.0f)
-                        .setDuration(400);
+//                fullname.animate()
+//                        .translationX(-(viewwidth))
+//                        .alpha(1.0f)
+//                        .setDuration(400);
                 signupbutton.animate()
                         .translationX(-(viewwidth))
-                        .alpha(1.0f)
+                        //.alpha(1.0f)
                         .setDuration(400);
                 alreadyregistered.animate()
                         .translationX(-(viewwidth))
-                        .alpha(1.0f)
+                        //.alpha(1.0f)
                         .setDuration(400);
+                signupbutton.setVisibility(View.VISIBLE);
+                alreadyregistered.setVisibility(View.VISIBLE);
             }
         });
 
@@ -134,10 +170,10 @@ public class LoginActivity extends AppCompatActivity {
                         .translationX((viewwidth))
                         .alpha(1.0f)
                         .setDuration(400);
-                fullname.animate()
-                        .translationX((viewwidth))
-                        .alpha(0.0f)
-                        .setDuration(400);
+//                fullname.animate()
+//                        .translationX((viewwidth))
+//                        .alpha(0.0f)
+//                        .setDuration(400);
                 signupbutton.animate()
                         .translationX((viewwidth))
                         .alpha(0.0f)
@@ -146,14 +182,167 @@ public class LoginActivity extends AppCompatActivity {
                         .translationX((viewwidth))
                         .alpha(0.0f)
                         .setDuration(400);
+                signupbutton.setVisibility(View.GONE);
+                alreadyregistered.setVisibility(View.GONE);
             }
         });
 
-
-        //onResume(); video needs to be loaded and started
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                //to be modified
+            }
+        };
+
+
+        loginbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Snackbar.make(v, "You clicked on Login button", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                login(emailinput.getText().toString(), passwordInput.getText().toString());
+
+            }
+        });
+
+        signupbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Snackbar.make(v, "You clicked on Signup button", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+
+                createAccount(emailinput.getText().toString(), passwordInput.getText().toString());
+
+
+            }
+        });
+
+        forgotpasswordbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgotPassword(emailinput.getText().toString());
+            }
+        });
+
+    }
+
+    private void forgotPassword(String email) {
+        if (!validateForgotPassword()) {
+            return;
+        }
+
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Password Reset Email Sent",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
+
+    private void login(String email, String password) {
+        if (!validate()) {
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, "Log In Successful",
+                                    Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+    }
+
+    private void createAccount(String email, String password) {
+
+        if (!validate()) {
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, "Sign Up Successful",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                });
+    }
+
+    private boolean validateForgotPassword(){
+        boolean valid = true;
+        String email = emailinput.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            emailinput.setError("Required");
+            valid = false;
+        } else {
+            emailinput.setError(null);
+        }
+        return valid;
+    }
+
+    private boolean validate() {
+        boolean valid = true;
+
+        String email = emailinput.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            emailinput.setError("Required");
+            valid = false;
+        } else {
+            emailinput.setError(null);
+        }
+
+        String password = passwordInput.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            passwordInput.setError("Required");
+            valid = false;
+        } else {
+            passwordInput.setError(null);
+        }
+        return valid;
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
@@ -164,6 +353,7 @@ public class LoginActivity extends AppCompatActivity {
         String uripath2 = "android.resource://" + getPackageName() + "/" + R.raw.aurora_login_screen;
         Uri bguri = Uri.parse(uripath2);
 
+        assert bgview != null;
         bgview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -175,4 +365,15 @@ public class LoginActivity extends AppCompatActivity {
         bgview.setVideoURI(bguri);
         bgview.start();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+
+
 }

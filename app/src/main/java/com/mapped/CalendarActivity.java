@@ -109,7 +109,12 @@ public class CalendarActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);
+//            Intent backtoHome = new Intent(Intent.ACTION_MAIN);
+//            backtoHome.addCategory(Intent.CATEGORY_HOME);
+//            backtoHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(backtoHome);
+
         }
     }
 
@@ -157,5 +162,10 @@ public class CalendarActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

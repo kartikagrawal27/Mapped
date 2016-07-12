@@ -28,7 +28,8 @@
         android:layout_marginBottom="7dp"
         android:layout_below="@+id/Mapped"
         android:layout_alignLeft="@+id/emailinput"
-        android:layout_alignStart="@+id/emailinput" />
+        android:layout_alignStart="@+id/emailinput"
+        android:visibility="invisible"/>
 
     <EditText
         android:id="@+id/emailinput"
@@ -111,13 +112,12 @@
         android:textStyle="italic"
         android:textSize="18dp"
         android:typeface="sans"
-        android:text="Already Registered? Log In"
+        android:text="Already Mapped? Log In"
         android:id="@+id/alreadyregistered"
         android:textAllCaps="false"
         android:textColor="#ffffffff"
-        android:layout_below="@+id/loginbutton"
-        android:layout_alignRight="@+id/loginpassword"
-        android:layout_alignEnd="@+id/loginpassword" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
