@@ -191,7 +191,6 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
                 dayofweek = "SAT";
                 break;
         }
-
         return dayofweek;
     }
 }

@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_mapped_launcher"
+        android:icon="@mipmap/ic_mapped_launcher3"
         android:label="Mapped"
         android:supportsRtl="true"
         android:theme="@style/FullscreenTheme">

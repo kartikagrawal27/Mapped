@@ -1,6 +1,7 @@
 package com.mapped;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -45,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button alreadyregistered;
     private Button forgotpasswordbutton;
     private Button signup;
+    SharedPreferences loginPreferences;
+    SharedPreferences.Editor editor;
 
 
 
@@ -79,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/BeforeTheRain.ttf");
         tx.setTypeface(custom_font);
 
-        ImageView mappedIcon = (ImageView) findViewById(R.id.mappedLogin);
-        mappedIcon.setImageResource(R.drawable.mapped);
+//        ImageView mappedIcon = (ImageView) findViewById(R.id.mappedLogin);
+//        mappedIcon.setImageResource(R.drawable.maybe1);
 
 
         emailinput = (EditText) findViewById(R.id.emailinput);
@@ -289,7 +292,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void createAccount(String email, String password) {
+    private void createAccount(final String email, final String password) {
 
         if (!validate()) {
             return;
@@ -307,6 +310,11 @@ public class LoginActivity extends AppCompatActivity {
                         else{
                             Toast.makeText(LoginActivity.this, "Sign Up Successful",
                                     Toast.LENGTH_LONG).show();
+                            loginPreferences = getSharedPreferences("Login",0);
+                            editor = loginPreferences.edit();
+                            editor.putString("email", email);
+                            editor.putString("password", password);
+                            editor.commit();
                         }
                     }
 

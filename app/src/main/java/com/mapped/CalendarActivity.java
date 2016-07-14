@@ -25,6 +25,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,6 +55,54 @@ public class CalendarActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        TextView monthYear = (TextView) findViewById(R.id.monthyear);
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        String monthString = null;
+        switch (month){
+            case 0:
+                monthString = "JANUARY";
+                break;
+            case 1:
+                monthString = "FEBRUARY";
+                break;
+            case 2:
+                monthString = "MARCH";
+                break;
+            case 3:
+                monthString = "APRIL";
+                break;
+            case 4:
+                monthString = "MAY";
+                break;
+            case 5:
+                monthString = "JUNE";
+                break;
+            case 6:
+                monthString = "JULY";
+                break;
+            case 7:
+                monthString = "AUGUST";
+                break;
+            case 8:
+                monthString = "SEPTEMBER";
+                break;
+            case 9:
+                monthString = "OCTOBER";
+                break;
+            case 10:
+                monthString = "NOVEMBER";
+                break;
+            case 11:
+                monthString = "DECEMBER";
+                break;
+        }
+
+        int year = c.get(Calendar.YEAR);
+        String yearString = Integer.toString(year);
+
+        monthYear.setText(monthString+ " " + yearString);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
