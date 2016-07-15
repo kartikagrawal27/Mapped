@@ -148,7 +148,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
 
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -179,8 +179,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                     Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                                     startActivity(intent);
-                                    Toast.makeText(SplashScreenActivity.this, task.getException().getMessage(),
-                                            Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
