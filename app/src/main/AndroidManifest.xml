@@ -9,8 +9,8 @@
         android:icon="@mipmap/ic_mapped_launcher3"
         android:label="Mapped"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ViewPagerActivity">
+        android:theme="@style/FullscreenTheme">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +50,7 @@
             android:name=".LoginActivity"
             android:label="Login Activity"
             android:theme="@style/AppTheme"></activity>
-        <activity android:name=".SplashScreenActivity"></activity>
+        <activity android:name=".ViewPagerActivity"></activity>
     </application>
 
 </manifest>

@@ -10,4 +10,5 @@
     <color name="schoolEvents">#fff200</color>
     <color name="clubEvents">#04de00</color>
     <color name="black_overlay">#66000000</color>
+    <color name="orange">#ff8400</color>
 </resources>

@@ -173,7 +173,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Intent intent = new Intent(SplashScreenActivity.this, CalendarActivity.class);
+                                    Intent intent = new Intent(SplashScreenActivity.this, ViewPagerActivity.class);
                                     startActivity(intent);
                                 } else {
 

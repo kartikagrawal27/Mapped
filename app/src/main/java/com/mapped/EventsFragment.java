@@ -9,19 +9,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by Pegasus on 7/16/16.
+ * Created by Pegasus on 7/17/16.
  */
-public class FragmentTwo extends Fragment {
+public class EventsFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.events_fragment_layout,container, false);
 
-        View v =inflater.inflate(R.layout.fragment_two_layout, container, false);
+        TextView textView = (TextView) view.findViewById(R.id.testBox);
+        textView.setText("Hello");
 
-
-        TextView myView = (TextView) v.findViewById(R.id.ggh);
-        myView.setText("2");
-        return v;
+        return view;
     }
 }

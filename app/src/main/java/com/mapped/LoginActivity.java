@@ -285,7 +285,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Log In Successful",
                                     Toast.LENGTH_LONG).show();
 
-                            Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
                             startActivity(intent);
                         }
                     }

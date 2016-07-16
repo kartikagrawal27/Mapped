@@ -16,17 +16,30 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new FragmentOne();
-
+                return new CalendarFragment();
             case 1:
-                return new FragmentTwo();
-            default:
-                return null;
+                return new NewsFeedFragment();
+            case 2:
+                return new EventsFragment();
         }
+        return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position){
+            case 0:
+                return "Timeline";
+            case 1:
+                return "News Feed";
+            case 2:
+                return "Events";
+        }
+        return null;
     }
 }

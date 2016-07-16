@@ -1,5 +1,6 @@
 package com.mapped;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  * Created by Pegasus on 7/16/16.
  */
-public class FragmentOne extends Fragment {
+public class CalendarFragment extends Fragment {
 
 
 
@@ -38,7 +40,7 @@ public class FragmentOne extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v =inflater.inflate(R.layout.fagment_one_layout, container, false);
+        View v =inflater.inflate(R.layout.calendar_fragment_layout, container, false);
         faActivity = super.getActivity();
 
         TextView myView = (TextView) v.findViewById(R.id.aasd);
@@ -123,6 +125,15 @@ public class FragmentOne extends Fragment {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(faActivity, EventDetailsActivity.class);
+                intent.putExtra("calEvents", calEvents.get(position));
+                startActivity(intent);
             }
         });
 

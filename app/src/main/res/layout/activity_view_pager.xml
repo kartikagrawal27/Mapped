@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.view.ViewPager
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/pager"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.v4.view.ViewPager>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/actionToolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/turquoise">
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_below="@id/actionToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#000000"
+        android:id="@+id/hellow">
+
+        <github.chenupt.springindicator.SpringIndicator
+            app:siTextSize="15dp"
+            app:siTextColor="@color/colorAccent"
+            app:siRadiusMax="40dp"
+            app:siRadiusMin="7dp"
+            app:siSelectedTextColor="@color/colorPrimaryDark"
+            app:siIndicatorColor="@color/colorAccent"
+            android:id="@+id/myIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_below="@id/hellow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

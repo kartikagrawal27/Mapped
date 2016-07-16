@@ -113,7 +113,8 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
         TextView dateView = (TextView) convertView.findViewById(R.id.particularDate);
 
         Calendar c  = Calendar.getInstance();
-        int monthDate = c.get(Calendar.DAY_OF_MONTH)+position;
+        c.add(Calendar.DAY_OF_MONTH, position);
+        int monthDate = c.get(Calendar.DAY_OF_MONTH);
 
         dateView.setText(String.valueOf(monthDate));
 
