@@ -43,63 +43,6 @@ public class CalendarFragment extends Fragment {
         View v =inflater.inflate(R.layout.calendar_fragment_layout, container, false);
         faActivity = super.getActivity();
 
-        TextView myView = (TextView) v.findViewById(R.id.aasd);
-        myView.setText("Hello");
-
-        Firebase.setAndroidContext(faActivity);
-
-
-
-        myMonthYear = (TextView) v.findViewById(R.id.aasd);
-        Calendar c = Calendar.getInstance();
-        int month = c.get(Calendar.MONTH);
-        String monthString = null;
-        switch (month) {
-            case 0:
-                monthString = "JANUARY";
-                break;
-            case 1:
-                monthString = "FEBRUARY";
-                break;
-            case 2:
-                monthString = "MARCH";
-                break;
-            case 3:
-                monthString = "APRIL";
-                break;
-            case 4:
-                monthString = "MAY";
-                break;
-            case 5:
-                monthString = "JUNE";
-                break;
-            case 6:
-                monthString = "JULY";
-                break;
-            case 7:
-                monthString = "AUGUST";
-                break;
-            case 8:
-                monthString = "SEPTEMBER";
-                break;
-            case 9:
-                monthString = "OCTOBER";
-                break;
-            case 10:
-                monthString = "NOVEMBER";
-                break;
-            case 11:
-                monthString = "DECEMBER";
-                break;
-        }
-
-        int year = c.get(Calendar.YEAR);
-        String yearString = Integer.toString(year);
-
-        myMonthYear.setText(monthString + " " + yearString);
-
-
-
         calendarAdapter = new CalendarAdapter(faActivity, R.layout.calendar_item, calEvents);
         final ListView lv = (ListView) v.findViewById(R.id.qwert);
 

@@ -5,10 +5,24 @@
     <color name="colorAccent">#ffffff</color>
     <color name="turquoise">#1bbbc1</color>
     <color name="greyishBackground">#0d0f11</color>
+    <color name="mapped">#1e358e</color>
+
     <color name="corporateEvents">#6600ff</color>
     <color name="socialEvents">#e100ff</color>
-    <color name="schoolEvents">#fff200</color>
-    <color name="clubEvents">#04de00</color>
+    <color name="schoolEvents">#D13525</color>
+    <color name="tomato">#CF3721</color>
+    <color name ="electricBlue">#4897D8</color>
+    <color name ="lime">#C7DB00</color>
+    <color name ="yellowPear">#EBDF00</color>
+    <color name="clubEvents">#7caa2d</color>
+    <color name="grecianBlue">#2988BC</color>
+    <color name="yellowFlash">#edb83d</color>
+    <color name="mainTurquoise">#138d90</color>
     <color name="black_overlay">#66000000</color>
+    <color name="wood">#81715E</color>
     <color name="orange">#ff8400</color>
+    <color name="corporate">#f9ba32</color>
+    <color name="school">#0ac400</color>
+    <color name="club">#ff007b</color>
+    <color name="social">#1bbbc1</color>
 </resources>

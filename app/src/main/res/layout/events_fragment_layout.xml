@@ -2,15 +2,179 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9d11b3">
+    android:background="#ffffff"
+    android:weightSum="2"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:id="@+id/testBox"
-        android:textAlignment="gravity"/>
+
+
+    <RelativeLayout
+        android:layout_width="206dp"
+        android:layout_height="287dp"
+        android:background="@color/corporate"
+        android:id="@+id/corporateButton">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_city"
+            android:id="@+id/corporateImage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CORPORATE"
+            android:textSize="18dp"
+            android:layout_below="@id/corporateImage"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAccent"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_toRightOf="@id/corporateButton"
+        android:layout_width="206dp"
+        android:layout_height="287dp"
+        android:id="@+id/schoolButton"
+        android:background="@color/school">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_school"
+            android:id="@+id/schoolImage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCHOOL"
+            android:textSize="18dp"
+            android:layout_below="@id/schoolImage"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAccent"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@id/corporateButton"
+        android:layout_width="206dp"
+        android:layout_height="287dp"
+        android:background="@color/turquoise"
+        android:id="@+id/socialButton">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_martini"
+            android:id="@+id/martiniImage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOCIAL"
+            android:textSize="18dp"
+            android:layout_below="@id/martiniImage"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAccent"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="206dp"
+        android:layout_height="287dp"
+        android:id="@+id/clubButton"
+        android:background="#ff007b"
+        android:layout_below="@+id/corporateButton"
+        android:layout_toEndOf="@+id/corporateButton">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_group"
+            android:id="@+id/clubImage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLUB"
+            android:textSize="18dp"
+            android:layout_below="@id/clubImage"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAccent"/>
+
+
+    </RelativeLayout>
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="2"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_marginTop="?attr/actionBarSize">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/corporateButton"-->
+            <!--android:background="@color/sunshine">-->
+            <!---->
+            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="40dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="40dp" />&ndash;&gt;-->
+            <!---->
+            <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/schoolButton"-->
+            <!--android:background="#0ac400" />-->
+
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="2"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<ImageButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textColor="@color/colorAccent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="New Button"-->
+            <!--android:id="@+id/button3"-->
+            <!--android:background="@color/turquoise"-->
+            <!--android:src="@drawable/ic_martini"-->
+            <!--android:scaleX="3.5"-->
+            <!--android:scaleY="3.5"/>-->
+
+        <!--<ImageButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="New Button"-->
+            <!--android:textColor="@color/colorAccent"-->
+            <!--android:id="@+id/button4"-->
+            <!--android:background="#ff007b"-->
+            <!--android:src="@drawable/ic_group"-->
+            <!--android:scaleType="fitCenter"/>-->
+    <!--</LinearLayout>-->
+
+
 
 
 </RelativeLayout>

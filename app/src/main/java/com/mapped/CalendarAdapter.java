@@ -54,16 +54,16 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
 
                     switch (eventType.get(0)){
                         case "course":
-                            colorCode1.setImageResource(R.drawable.course);
+                            colorCode1.setImageResource(R.drawable.school_code);
                             break;
                         case "social":
-                            colorCode1.setImageResource(R.drawable.social);
+                            colorCode1.setImageResource(R.drawable.social_code);
                             break;
                         case "corporate":
-                            colorCode1.setImageResource(R.drawable.corporate);
+                            colorCode1.setImageResource(R.drawable.corporate_code);
                             break;
                         case "club":
-                            colorCode1.setImageResource(R.drawable.club);
+                            colorCode1.setImageResource(R.drawable.club_code);
                             break;
                     }
                 }
@@ -72,16 +72,16 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
 
                     switch (eventType.get(1)){
                         case "course":
-                            colorCode2.setImageResource(R.drawable.course);
+                            colorCode2.setImageResource(R.drawable.school_code);
                             break;
                         case "social":
-                            colorCode2.setImageResource(R.drawable.social);
+                            colorCode2.setImageResource(R.drawable.social_code);
                             break;
                         case "corporate":
-                            colorCode2.setImageResource(R.drawable.corporate);
+                            colorCode2.setImageResource(R.drawable.corporate_code);
                             break;
                         case "club":
-                            colorCode2.setImageResource(R.drawable.club);
+                            colorCode2.setImageResource(R.drawable.club_code);
                             break;
                     }
                 }
@@ -89,16 +89,16 @@ public class CalendarAdapter extends ArrayAdapter<CalendarDay>{
                 if(eventType.size()>2) {
                     switch (eventType.get(2)){
                         case "course":
-                            colorCode3.setImageResource(R.drawable.course);
+                            colorCode3.setImageResource(R.drawable.school_code);
                             break;
                         case "social":
-                            colorCode3.setImageResource(R.drawable.social);
+                            colorCode3.setImageResource(R.drawable.social_code);
                             break;
                         case "corporate":
-                            colorCode3.setImageResource(R.drawable.corporate);
+                            colorCode3.setImageResource(R.drawable.corporate_code);
                             break;
                         case "club":
-                            colorCode3.setImageResource(R.drawable.club);
+                            colorCode3.setImageResource(R.drawable.club_code);
                             break;
                     }
                 }

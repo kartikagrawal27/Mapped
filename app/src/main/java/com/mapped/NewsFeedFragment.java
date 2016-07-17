@@ -18,9 +18,9 @@ public class NewsFeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v =inflater.inflate(R.layout.news_feed_fragment_layout, container, false);
-
-        TextView myView = (TextView) v.findViewById(R.id.ggh);
-        myView.setText("2");
+//        TextView myView = (TextView) v.findViewById(R.id.ggh);
+//        myView.setText("2");
         return v;
+
     }
 }
