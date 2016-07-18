@@ -10,7 +10,7 @@
         android:label="Mapped"
         android:supportsRtl="true"
         android:theme="@style/FullscreenTheme">
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".CheckingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,8 +49,12 @@
         <activity
             android:name=".LoginActivity"
             android:label="Login Activity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".ViewPagerActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ViewPagerActivity" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="@string/title_activity_checking"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
