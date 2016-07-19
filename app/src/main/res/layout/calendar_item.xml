@@ -37,7 +37,7 @@
         android:layout_height="80.8dp"
         android:orientation="vertical"
         android:id="@+id/dayinfo"
-        android:background="#bbc3c6"
+        android:background="#a3a599"
         android:layout_toRightOf="@+id/daydate">
 
         <TextView
@@ -49,7 +49,7 @@
             android:textAlignment="gravity"
             android:textSize="13dp"
             android:layout_marginTop="10dp"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:layout_marginRight="10dp" />
 
         <ImageView
@@ -67,7 +67,7 @@
             android:layout_height="18dp"
             android:layout_toRightOf="@id/colorCode1"
             android:layout_alignTop="@+id/starttime1"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:id="@+id/eventname1"/>
 
         <TextView
@@ -79,7 +79,7 @@
             android:textAlignment="gravity"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:layout_marginRight="10dp"/>
 
         <ImageView
@@ -97,7 +97,7 @@
             android:layout_height="18dp"
             android:layout_toRightOf="@id/colorCode2"
             android:layout_alignTop="@+id/starttime2"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:id="@+id/eventname2"/>
 
         <TextView
@@ -109,7 +109,7 @@
             android:textAlignment="gravity"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="50dp"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:layout_marginRight="10dp"/>
 
         <ImageView
@@ -127,7 +127,7 @@
             android:layout_height="18dp"
             android:layout_toRightOf="@id/colorCode3"
             android:layout_alignTop="@+id/starttime3"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:id="@+id/eventname3"/>
 
 

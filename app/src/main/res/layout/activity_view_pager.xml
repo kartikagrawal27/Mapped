@@ -1,45 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/actionToolbar"
-        android:minHeight="?attr/actionBarSize"
+    <include
+        layout="@layout/app_bar_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="@color/mapped">
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="match_parent" />
 
-    <RelativeLayout
-        android:layout_below="@id/actionToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#000000"
-        android:id="@+id/hellow">
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_checking"
+        app:menu="@menu/activity_checking_drawer" />
 
-        <github.chenupt.springindicator.SpringIndicator
-            app:siTextSize="15dp"
-            app:siTextColor="@color/colorAccent"
-            app:siRadiusMax="40dp"
-            app:siRadiusMin="7dp"
-            app:siSelectedTextColor="@color/colorPrimaryDark"
-            app:siIndicatorColor="@color/colorAccent"
-            android:id="@+id/myIndicator"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"/>
-
-    </RelativeLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_below="@id/hellow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v4.view.ViewPager>
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

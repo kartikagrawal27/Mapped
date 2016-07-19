@@ -1,19 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0000">
+    android:background="@drawable/trial4"
+    android:layout_marginBottom="87dp"
+    android:id="@+id/mainNewsFeedLAyout">
 
 
-    <TextView
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textColor="#ffffff"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:id="@+id/ggh"
-        android:background="#2f00ff"
-        android:textAlignment="gravity"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/newsFeedLinear">
+
+    <RadioGroup
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/rgTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_border"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/rbBlue"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_featured"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textAlignment="gravity"
+            android:text="Featured"
+            android:textSize="15dp"
+            android:textColor="#ffffff"/>
+
+        <View
+            android:id="@+id/vSep1"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/rbGreen"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_today"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="Today"
+            android:textAlignment="gravity"
+            android:textSize="15dp"
+            android:textColor="#ffffff"/>
+
+        <View
+            android:id="@+id/vSep2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/rbRed"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_upcoming"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAlignment="gravity"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="Upcoming"
+            android:textSize="15dp"
+            android:textColor="#ffffff"/>
+    </RadioGroup>
+    </LinearLayout>
+
 
 </RelativeLayout>

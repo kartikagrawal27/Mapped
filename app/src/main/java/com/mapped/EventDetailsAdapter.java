@@ -45,16 +45,16 @@ public class EventDetailsAdapter extends ArrayAdapter {
 
         switch (currentDay.getEvent_type()){
             case "course":
-                colorCode.setBackgroundResource(R.color.schoolEvents);
+                colorCode.setBackgroundResource(R.color.school);
                 break;
             case "social":
-                colorCode.setBackgroundResource(R.color.socialEvents);
+                colorCode.setBackgroundResource(R.color.social);
                 break;
             case "corporate":
-                colorCode.setBackgroundResource(R.color.corporateEvents);
+                colorCode.setBackgroundResource(R.color.corporate);
                 break;
             case "club":
-                colorCode.setBackgroundResource(R.color.clubEvents);
+                colorCode.setBackgroundResource(R.color.club);
                 break;
         }
 

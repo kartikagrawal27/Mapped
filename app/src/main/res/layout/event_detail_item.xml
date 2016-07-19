@@ -6,7 +6,6 @@
     <LinearLayout
         android:layout_width="10dp"
         android:layout_height="80dp"
-        android:background="@color/socialEvents"
         android:id="@+id/eventColorCode"
         android:orientation="horizontal">
     </LinearLayout>
@@ -14,7 +13,7 @@
     <RelativeLayout
         android:layout_width="70dp"
         android:layout_height="80dp"
-        android:background="@color/mapped"
+        android:background="#a3a599"
         android:id="@+id/eventTimes"
         android:layout_toRightOf="@id/eventColorCode">
 
@@ -24,7 +23,7 @@
             android:layout_above="@+id/timeSeparator"
             android:layout_centerHorizontal="true"
             android:text="11:00AM"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:textSize="15dp"
             android:id="@+id/startTimeD"
             android:textAlignment="center"
@@ -47,7 +46,7 @@
             android:layout_below="@+id/timeSeparator"
             android:layout_centerHorizontal="true"
             android:text="1:30PM"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             android:textSize="15dp"
             android:id="@+id/endTimeD"
             android:textAlignment="center"
@@ -66,7 +65,7 @@
     <RelativeLayout
         android:layout_width="290dp"
         android:layout_height="80dp"
-        android:background="@color/mapped"
+        android:background="#a3a599"
         android:id="@+id/mainEventDetails"
         android:layout_toRightOf="@id/separator1">
 
@@ -79,7 +78,7 @@
             android:text="Apple Workshop"
             android:textSize="20dp"
             android:layout_marginBottom="5dp"
-            android:textColor="#ffffffff"
+            android:textColor="#ffffff"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -88,7 +87,7 @@
             android:text="SIEBL 1001"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/eventNameD"
-            android:textColor="#e7e7e7"
+            android:textColor="#ffffff"
             android:layout_marginBottom="5dp"
             />
         <TextView
@@ -98,7 +97,7 @@
             android:text="Tim Cook"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/eventLocationD"
-            android:textColor="#e7e7e7"
+            android:textColor="#ffffff"
             />
     </RelativeLayout>
 
