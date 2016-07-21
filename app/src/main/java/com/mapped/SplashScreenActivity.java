@@ -89,7 +89,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
         ImageView mapped = (ImageView) findViewById(R.id.splash_mapped);
-        mapped.setImageResource(R.drawable.maybe1);
+        mapped.setImageResource(R.drawable.mapped);
 
 
         TextView heading = (TextView) findViewById(R.id.mappedText);

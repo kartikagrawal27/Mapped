@@ -80,9 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/BeforeTheRain.ttf");
         tx.setTypeface(custom_font);
 
-//        ImageView mappedIcon = (ImageView) findViewById(R.id.mappedLogin);
-//        mappedIcon.setImageResource(R.drawable.maybe1);
-
 
         emailinput = (EditText) findViewById(R.id.emailinput);
         assert emailinput != null;
