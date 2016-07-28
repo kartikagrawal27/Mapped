@@ -34,13 +34,14 @@ public class CalendarFragment extends Fragment {
     private List<CalendarDay> calEvents = new ArrayList<>();
     private List<String> user_subscribed_events;
     private CalendarAdapter calendarAdapter;
+    View v;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v =inflater.inflate(R.layout.calendar_fragment_layout, container, false);
+        v =inflater.inflate(R.layout.calendar_fragment_layout, container, false);
         faActivity = super.getActivity();
 
         calendarAdapter = new CalendarAdapter(faActivity, R.layout.calendar_item, calEvents);
@@ -63,8 +64,8 @@ public class CalendarFragment extends Fragment {
                 calEvents.add(new CalendarDay(5, user_subscribed_events, calendarAdapter));
                 calEvents.add(new CalendarDay(6, user_subscribed_events, calendarAdapter));
                 lv.setAdapter(calendarAdapter);
+                v.findViewById(R.id.loadingPanelCalendarFragment).setVisibility(View.GONE);
             }
-
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
@@ -79,7 +80,7 @@ public class CalendarFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return v;
     }
+
 }

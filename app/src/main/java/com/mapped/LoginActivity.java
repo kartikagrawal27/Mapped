@@ -262,7 +262,7 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    private void login(String email, String password) {
+    private void login(final String email, final String password) {
         if (!validate()) {
             return;
         }
@@ -280,6 +280,11 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Log In Successful",
                                     Toast.LENGTH_LONG).show();
 
+                            loginPreferences = getSharedPreferences("Login",0);
+                            editor = loginPreferences.edit();
+                            editor.putString("email", email);
+                            editor.putString("password", password);
+                            editor.commit();
                             Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
                             startActivity(intent);
                         }

@@ -7,6 +7,19 @@
     android:layout_marginBottom="87dp"
     android:id="@+id/mainNewsFeedLAyout">
 
+    <RelativeLayout
+        android:id="@+id/loadingPanelNewsFeed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -60,6 +73,7 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
+            android:checked="true"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:singleLine="true"
@@ -94,6 +108,15 @@
             android:textColor="#ffffff"/>
     </RadioGroup>
     </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00ffffff"
+        android:layout_below="@id/newsFeedLinear"
+        android:layout_marginTop="2dp"
+        android:id="@+id/mainList">
+    </ListView>
 
 
 </RelativeLayout>

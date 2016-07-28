@@ -58,17 +58,12 @@ public class EventDetailsAdapter extends ArrayAdapter {
                 break;
         }
 
-
         startTime.setText(currentDay.getStart_time());
         endTime.setText(currentDay.getEnd_time());
 
-
-        eventName.setText(currentDay.getName());
+        eventName.setText(currentDay.getShort_desc());
         eventLocation.setText(currentDay.getLocation());
         presenterName.setText(currentDay.getPresenter_name());
-
-
-
 
         return convertView;
 

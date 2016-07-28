@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#00ffffff">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorAccent">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/orgLogo"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/orgName"
+                android:textStyle="bold"
+                android:textColor="#07a6ef"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/orgLogo"
+                android:textSize="17dp"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:textAlignment="gravity"
+                android:text="MORE"
+                android:textSize="8dp"
+                android:textStyle="bold"
+                android:padding="4dp"
+                android:id="@+id/more"
+                android:textColor="@color/colorAccent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="#ff0000"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/maindivider"
+                android:layout_height="1dp"
+                android:layout_below="@id/orgName"
+                android:layout_toStartOf="@id/more"
+                android:layout_toEndOf="@id/orgLogo"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="10dp"
+                android:background="#d7d7d7">
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#535353"
+                android:textSize="11dp"
+                android:id="@+id/eventDesc"
+                android:layout_marginRight="60dp"
+                android:maxLines="2"
+                android:layout_below="@id/maindivider"
+                android:layout_alignLeft="@id/maindivider"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

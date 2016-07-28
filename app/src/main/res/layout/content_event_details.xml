@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:text="Sunday, January 3, 2016"
         android:id="@+id/currentDay"
         android:layout_alignParentTop="true"
@@ -19,8 +21,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/greyishBackground"
-        android:textColor="@color/turquoise"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent"
         android:gravity="center_vertical"
         android:textAlignment="center"/>
 

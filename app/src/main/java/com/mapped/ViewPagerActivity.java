@@ -1,11 +1,10 @@
 package com.mapped;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import github.chenupt.springindicator.SpringIndicator;
 
@@ -30,7 +30,7 @@ public class ViewPagerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Mapped");
+        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -50,6 +50,7 @@ public class ViewPagerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
 
         Firebase.setAndroidContext(this);
 
@@ -59,7 +60,7 @@ public class ViewPagerActivity extends AppCompatActivity
         viewpager.setAdapter(pagerAdapter);
         SpringIndicator springIndicator = (SpringIndicator) findViewById(R.id.myIndicator);
         springIndicator.setViewPager(viewpager);
-
+        viewpager.setCurrentItem(1);
     }
 
     @Override
@@ -87,7 +88,7 @@ public class ViewPagerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.myCourses) {
             return true;
         }
 
@@ -100,17 +101,28 @@ public class ViewPagerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
+            viewpager.setCurrentItem(1);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_courses) {
+            Intent manCoursesIntent = new Intent(ViewPagerActivity.this, CollegesActivity.class);
+            startActivity(manCoursesIntent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_myClubs) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+
+            FirebaseAuth.getInstance().signOut();
+            SharedPreferences loginPreferences = this.getSharedPreferences("Login", 0);
+            SharedPreferences.Editor editor = loginPreferences.edit();
+            editor.remove("email");
+            editor.remove("password");
+            editor.commit();
+            Intent loginIntent = new Intent(ViewPagerActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         }
 

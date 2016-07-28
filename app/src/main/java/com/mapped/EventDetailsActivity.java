@@ -1,11 +1,9 @@
 package com.mapped;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,8 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class EventDetailsActivity extends AppCompatActivity
@@ -31,20 +30,22 @@ public class EventDetailsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Day Details");
         setSupportActionBar(toolbar);
+
 
 
         Intent intent = getIntent();
         CalendarDay touchedDay = intent.getParcelableExtra("calEvents");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,18 +61,19 @@ public class EventDetailsActivity extends AppCompatActivity
         EventDetailsAdapter eventDetailsAdapter = new EventDetailsAdapter(this, R.layout.event_detail_item, dayEvents);
         ListView lv = (ListView) findViewById(R.id.eventDetails);
         lv.setAdapter(eventDetailsAdapter);
+        navigationView.setItemIconTintList(null);
     }
 
     public void createCustomData(CalendarDay touchedDay){
         List<String> startTime = touchedDay.getStartTime();
-        List<String> eventName = touchedDay.getEventName();
+        List<String> eventName = touchedDay.getEventShortDesc();
         List<String> endTime = touchedDay.getEndTime();
         List<String> location = touchedDay.getLocation();
         List<String> presenterName = touchedDay.getPresenterName();
         List<String> eventType = touchedDay.getEventType();
 
         for(int i=0;i<startTime.size();i++){
-            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i), null, startTime.get(i), endTime.get(i), eventName.get(i)));
+            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i),startTime.get(i), endTime.get(i), eventName.get(i),null, null, null));
         }
     }
 
@@ -100,7 +102,7 @@ public class EventDetailsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.myCourses) {
             return true;
         }
 
@@ -113,17 +115,30 @@ public class EventDetailsActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
+            Intent homeIntent = new Intent(EventDetailsActivity.this, ViewPagerActivity.class);
+            startActivity(homeIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_courses) {
+            Intent manCoursesIntent = new Intent(EventDetailsActivity.this, CollegesActivity.class);
+            startActivity(manCoursesIntent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_myClubs) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+
+            FirebaseAuth.getInstance().signOut();
+            SharedPreferences loginPreferences = this.getSharedPreferences("Login", 0);
+            SharedPreferences.Editor editor = loginPreferences.edit();
+            editor.remove("email");
+            editor.remove("password");
+            editor.commit();
+            Intent loginIntent = new Intent(EventDetailsActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         }
 

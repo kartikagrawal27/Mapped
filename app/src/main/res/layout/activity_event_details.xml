@@ -19,7 +19,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_event_details"
-        app:menu="@menu/activity_event_details_drawer" />
+        android:background="#2a347c"
+        app:itemTextColor="@color/colorAccent"
+        app:headerLayout="@layout/nav_header_checking"
+        app:menu="@menu/activity_checking_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

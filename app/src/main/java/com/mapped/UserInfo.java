@@ -18,6 +18,12 @@ public class UserInfo {
     private String user_type;
     private List<String> subscribed_events;
 
+    public String getUniversity() {
+        return university;
+    }
+
+    private String university;
+
 
     public UserInfo() {
 
