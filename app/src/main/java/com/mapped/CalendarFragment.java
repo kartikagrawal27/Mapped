@@ -75,8 +75,11 @@ public class CalendarFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_MONTH, position);
                 Intent intent = new Intent(faActivity, EventDetailsActivity.class);
                 intent.putExtra("calEvents", calEvents.get(position));
+                intent.putExtra("position", position);
                 startActivity(intent);
             }
         });

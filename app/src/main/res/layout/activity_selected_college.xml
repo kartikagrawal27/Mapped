@@ -20,7 +20,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/colorAccent"
-        android:background="#2a347c"
+        android:background="@color/navigationBlue"
         app:headerLayout="@layout/nav_header_checking"
         app:menu="@menu/activity_checking_drawer" />
 

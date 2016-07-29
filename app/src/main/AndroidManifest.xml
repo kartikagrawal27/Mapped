@@ -33,6 +33,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ViewPagerActivity"
+            android:alwaysRetainTaskState="true"
             android:label="@string/title_activity_checking"
             android:theme="@style/AppTheme" />
         <activity

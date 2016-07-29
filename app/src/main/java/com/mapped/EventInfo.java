@@ -16,6 +16,12 @@ public class EventInfo {
     private String university;
     private String organisation;
 
+    public String getFeatured() {
+        return featured;
+    }
+
+    private String featured;
+
     public String getOrganisation() {
         return organisation;
     }
@@ -30,7 +36,7 @@ public class EventInfo {
 
     }
 
-    public EventInfo(String date, String event_type, String location, String presenter_name, String start_time, String end_time, String short_desc, String university, String organisation, String description) {
+    public EventInfo(String date, String event_type, String location, String presenter_name, String start_time, String end_time, String short_desc, String university, String organisation, String description, String featured) {
         this.date = date;
         this.event_type = event_type;
         this.location = location;
@@ -41,6 +47,7 @@ public class EventInfo {
         this.university = university;
         this.organisation = organisation;
         this.description = description;
+        this.featured = featured;
     }
 
 

@@ -4,25 +4,25 @@ package com.mapped;
  * Created by Pegasus on 7/28/16.
  */
 public class OrganisationsInfo {
-    private String qwename;
+    private String orgname;
 
-    public String getAsdlink() {
-        return asdlink;
+    public String getOrglogolink() {
+        return orglogolink;
     }
 
-    public String getQwename() {
-        return qwename;
+    public String getOrgname() {
+        return orgname;
     }
 
-    private String asdlink;
+    private String orglogolink;
 
 
     public OrganisationsInfo() {
     }
 
-    public OrganisationsInfo(String qwename, String asdlink) {
-        this.qwename = qwename;
-        this.asdlink = asdlink;
+    public OrganisationsInfo(String orgname, String orglogolink) {
+        this.orgname = orgname;
+        this.orglogolink = orglogolink;
     }
 
 

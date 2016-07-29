@@ -13,10 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class EventDetailsActivity extends AppCompatActivity
@@ -37,6 +39,87 @@ public class EventDetailsActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         CalendarDay touchedDay = intent.getParcelableExtra("calEvents");
+
+        int offset = intent.getIntExtra("position",0);
+
+        String finalDay = null;
+
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, offset);
+
+
+        switch (calendar.get(Calendar.DAY_OF_WEEK)){
+            case 1:
+                finalDay = "Sunday";
+                break;
+            case 2:
+                finalDay = "Monday";
+                break;
+            case 3:
+                finalDay = "Tuesday";
+                break;
+            case 4:
+                finalDay = "Wednesday";
+                break;
+            case 5:
+                finalDay = "Thursday";
+                break;
+            case 6:
+                finalDay = "Friday";
+                break;
+            case 7:
+                finalDay = "Saturday";
+                break;
+        }
+
+        String finalMonth = null;
+
+
+        switch (calendar.get(Calendar.MONTH)){
+            case 0:
+                finalMonth = "January";
+                break;
+            case 1:
+                finalMonth = "February";
+                break;
+            case 2:
+                finalMonth = "March";
+                break;
+            case 3:
+                finalMonth = "April";
+                break;
+            case 4:
+                finalMonth = "May";
+                break;
+            case 5:
+                finalMonth = "June";
+                break;
+            case 6:
+                finalMonth = "July";
+                break;
+            case 7:
+                finalMonth = "August";
+                break;
+            case 8:
+                finalMonth = "September";
+                break;
+            case 9:
+                finalMonth = "October";
+                break;
+            case 10:
+                finalMonth = "November";
+                break;
+            case 11:
+                finalMonth = "December";
+                break;
+        }
+
+        String finalDate = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+
+
+        TextView chosenDate = (TextView) findViewById(R.id.currentDay);
+        chosenDate.setText(finalDay + ", " + finalMonth + " " + finalDate);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +156,7 @@ public class EventDetailsActivity extends AppCompatActivity
         List<String> eventType = touchedDay.getEventType();
 
         for(int i=0;i<startTime.size();i++){
-            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i),startTime.get(i), endTime.get(i), eventName.get(i),null, null, null));
+            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i),startTime.get(i), endTime.get(i), eventName.get(i),null, null, null, null));
         }
     }
 
@@ -117,6 +200,7 @@ public class EventDetailsActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             Intent homeIntent = new Intent(EventDetailsActivity.this, ViewPagerActivity.class);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(homeIntent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 

@@ -1,6 +1,7 @@
 package com.mapped;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -145,20 +147,30 @@ public class SelectedCollegeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
+            Intent homeIntent = new Intent(SelectedCollegeActivity.this, ViewPagerActivity.class);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(homeIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_courses) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_myClubs) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
 
+            FirebaseAuth.getInstance().signOut();
+            SharedPreferences loginPreferences = this.getSharedPreferences("Login", 0);
+            SharedPreferences.Editor editor = loginPreferences.edit();
+            editor.remove("email");
+            editor.remove("password");
+            editor.commit();
+            Intent loginIntent = new Intent(SelectedCollegeActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
