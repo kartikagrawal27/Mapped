@@ -12,8 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,8 +37,6 @@ public class EventDetailsActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Day Details");
         setSupportActionBar(toolbar);
-
-
 
         Intent intent = getIntent();
         CalendarDay touchedDay = intent.getParcelableExtra("calEvents");
@@ -145,6 +146,15 @@ public class EventDetailsActivity extends AppCompatActivity
         ListView lv = (ListView) findViewById(R.id.eventDetails);
         lv.setAdapter(eventDetailsAdapter);
         navigationView.setItemIconTintList(null);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String eventKey = dayEvents.get(position).getEventKey();
+                Toast.makeText(EventDetailsActivity.this, "You have selected " + eventKey , Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void createCustomData(CalendarDay touchedDay){
@@ -154,9 +164,10 @@ public class EventDetailsActivity extends AppCompatActivity
         List<String> location = touchedDay.getLocation();
         List<String> presenterName = touchedDay.getPresenterName();
         List<String> eventType = touchedDay.getEventType();
+        List<String> eventKeys = touchedDay.getEventKeys();
 
         for(int i=0;i<startTime.size();i++){
-            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i),startTime.get(i), endTime.get(i), eventName.get(i),null, null, null, null));
+            dayEvents.add(new EventInfo(null,eventType.get(i), location.get(i), presenterName.get(i),startTime.get(i), endTime.get(i), eventName.get(i),null, null, null, null, eventKeys.get(i)));
         }
     }
 

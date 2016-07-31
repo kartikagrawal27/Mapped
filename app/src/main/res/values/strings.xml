@@ -18,4 +18,5 @@
     <string name="title_activity_checking">CheckingActivity</string>
     <string name="title_activity_colleges">CollegesActivity</string>
     <string name="title_activity_selected_college">SelectedCollegeActivity</string>
+    <string name="title_activity_course_sections">CourseSectionsActivity</string>
 </resources>

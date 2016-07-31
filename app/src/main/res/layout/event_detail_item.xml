@@ -119,8 +119,10 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:id="@+id/infoButton"
             android:background="@drawable/ic_info_variant"
             android:textColor="#ffffffff"
+            android:focusable="false"
             android:layout_gravity="center"
             android:textSize="9dp"
             android:textAllCaps="true" />

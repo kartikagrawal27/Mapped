@@ -1,7 +1,5 @@
 package com.mapped;
 
-import java.util.List;
-
 /**
  * Created by Pegasus on 7/5/16.
  */
@@ -15,6 +13,12 @@ public class EventInfo {
     private String short_desc;
     private String university;
     private String organisation;
+
+    public String getEventKey() {
+        return eventKey;
+    }
+
+    private String eventKey;
 
     public String getFeatured() {
         return featured;
@@ -36,7 +40,7 @@ public class EventInfo {
 
     }
 
-    public EventInfo(String date, String event_type, String location, String presenter_name, String start_time, String end_time, String short_desc, String university, String organisation, String description, String featured) {
+    public EventInfo(String date, String event_type, String location, String presenter_name, String start_time, String end_time, String short_desc, String university, String organisation, String description, String featured, String eventKey) {
         this.date = date;
         this.event_type = event_type;
         this.location = location;
@@ -48,6 +52,7 @@ public class EventInfo {
         this.organisation = organisation;
         this.description = description;
         this.featured = featured;
+        this.eventKey = eventKey;
     }
 
 

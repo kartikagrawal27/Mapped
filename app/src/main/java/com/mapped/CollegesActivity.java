@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -52,6 +53,8 @@ public class CollegesActivity extends AppCompatActivity
 //            }
 //        });
 
+        final RelativeLayout loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanelCollegesActivity);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -82,6 +85,7 @@ public class CollegesActivity extends AppCompatActivity
                 }
                 Collections.sort(colleges);
                 adapter.notifyDataSetChanged();
+                loadingPanel.setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {

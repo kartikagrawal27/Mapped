@@ -26,6 +26,12 @@ public class CalendarDay implements Parcelable {
     private List<String> location = new ArrayList<String>();
     private List<String> presenterName = new ArrayList<String>();
 
+    public List<String> getEventKeys() {
+        return eventKeys;
+    }
+
+    private List<String> eventKeys = new ArrayList<>();
+
     public List<String> getCollege() {
         return college;
     }
@@ -131,6 +137,7 @@ public class CalendarDay implements Parcelable {
                                 presenterName.add(event.getPresenter_name());
                                 college.add(null);
                                 courseNumber.add(null);
+                                eventKeys.add(event_name);
                             }
                         }
                     } catch (Exception ex) {
@@ -176,7 +183,7 @@ public class CalendarDay implements Parcelable {
                                 presenterName.add(event.getPresenter_name());
                                 college.add(event.getCollege());
                                 courseNumber.add(event.getCollegeId());
-
+                                eventKeys.add(event_name);
                             }
                         }
                     } catch (Exception ex) {
@@ -217,6 +224,7 @@ public class CalendarDay implements Parcelable {
         dest.writeList(presenterName);
         dest.writeList(college);
         dest.writeList(courseNumber);
+        dest.writeList(eventKeys);
     }
 
     public CalendarDay(Parcel in) {
@@ -228,6 +236,7 @@ public class CalendarDay implements Parcelable {
         in.readList(presenterName, List.class.getClassLoader());
         in.readList(college, List.class.getClassLoader());
         in.readList(courseNumber, List.class.getClassLoader());
+        in.readList(eventKeys, List.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<CalendarDay> CREATOR = new Parcelable.Creator<CalendarDay>() {

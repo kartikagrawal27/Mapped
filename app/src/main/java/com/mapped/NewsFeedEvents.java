@@ -9,6 +9,10 @@ public class NewsFeedEvents {
     String orgName;
     String desc;
 
+
+
+    String eventKey;
+
     public String getImageCode() {
         return imageCode;
     }
@@ -21,10 +25,15 @@ public class NewsFeedEvents {
         return desc;
     }
 
-    public NewsFeedEvents(String imageCode, String orgName, String desc) {
+    public String getEventKey() {
+        return eventKey;
+    }
+
+    public NewsFeedEvents(String imageCode, String orgName, String desc, String eventKey) {
         this.imageCode = imageCode;
         this.orgName = orgName;
         this.desc = desc;
+        this.eventKey = eventKey;
     }
 
 

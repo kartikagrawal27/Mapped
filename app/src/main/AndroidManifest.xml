@@ -11,12 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/FullscreenTheme">
         <activity android:name=".SplashScreenActivity">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
@@ -39,8 +38,7 @@
         <activity
             android:name=".CollegesActivity"
             android:label="@string/title_activity_colleges"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".SelectedCollegeActivity"
             android:label="@string/title_activity_selected_college"
@@ -49,6 +47,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mapped.CollegesActivity" />
+        </activity>
+        <activity
+            android:name=".CourseSectionsActivity"
+            android:label="@string/title_activity_course_sections"
+            android:parentActivityName=".SelectedCollegeActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mapped.SelectedCollegeActivity" />
         </activity>
     </application>
 

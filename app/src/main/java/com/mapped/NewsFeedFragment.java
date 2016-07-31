@@ -11,8 +11,10 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -35,17 +37,28 @@ public class NewsFeedFragment extends Fragment {
     List<NewsFeedEvents> newsFeedToday = new ArrayList<>();
     List<NewsFeedEvents> newsFeedUpcoming  =new ArrayList<>();
     List<NewsFeedEvents> newsFeedFeatured = new ArrayList<>();
+
     HashMap<String, String> linksToOrgs = new HashMap<>();
+
     NewsFeedListAdapter newsFeedListAdapterToday;
     NewsFeedListAdapter newsFeedListAdapterUpcoming;
     NewsFeedListAdapter newsFeedListAdapterFeatured;
+
     List<String> tempNamesToday = new ArrayList<>();
     List<String> tempDescToday = new ArrayList<>();
+
     List<String> tempNamesUpcoming = new ArrayList<>();
     List<String> tempDescUpcoming = new ArrayList<>();
+
     List<String> tempNamesFeatured = new ArrayList<>();
     List<String> tempDescFeatured = new ArrayList<>();
+
+    List<String> todayEventKeys = new ArrayList<>();
+    List<String> upcomingEventKeys = new ArrayList<>();
+    List<String> featuredEventKeys = new ArrayList<>();
+
     FragmentActivity faActivity;
+
     int checkedStatusToday=0;
     int checkedStatusUpcoming=0;
     int checkedStatusFeatured = 0;
@@ -74,20 +87,23 @@ public class NewsFeedFragment extends Fragment {
                     linksToOrgs.put(org.getOrgname(), org.getOrglogolink());
                 }
                 while(i< tempNamesToday.size()){
-                    newsFeedToday.add(new NewsFeedEvents(linksToOrgs.get(tempNamesToday.get(i)), tempNamesToday.get(i), tempDescToday.get(i)));
+                    newsFeedToday.add(new NewsFeedEvents(linksToOrgs.get(tempNamesToday.get(i)), tempNamesToday.get(i), tempDescToday.get(i), todayEventKeys.get(i)));
                     i++;
                 }
                 i=0;
-                while(i<tempNamesToday.size()){
-                    newsFeedUpcoming.add(new NewsFeedEvents(linksToOrgs.get(tempNamesUpcoming.get(i)), tempNamesUpcoming.get(i), tempDescUpcoming.get(i)));
+                while(i<tempNamesUpcoming.size()){
+                    newsFeedUpcoming.add(new NewsFeedEvents(linksToOrgs.get(tempNamesUpcoming.get(i)), tempNamesUpcoming.get(i), tempDescUpcoming.get(i), upcomingEventKeys.get(i)));
                     i++;
                 }
                 i=0;
                 while(i<tempNamesFeatured.size()){
-                    newsFeedFeatured.add(new NewsFeedEvents(linksToOrgs.get(tempNamesFeatured.get(i)),tempNamesFeatured.get(i), tempDescFeatured.get(i)));
+                    newsFeedFeatured.add(new NewsFeedEvents(linksToOrgs.get(tempNamesFeatured.get(i)),tempNamesFeatured.get(i), tempDescFeatured.get(i), featuredEventKeys.get(i)));
                     i++;
                 }
-
+                if(newsFeedToday.size()==0){
+                    RelativeLayout loader = (RelativeLayout) v.findViewById(R.id.loadingPanelNewsFeed);
+                    loader.setVisibility(View.GONE);
+                }
                 newsFeedListAdapterToday.notifyDataSetChanged();
                 newsFeedListAdapterUpcoming.notifyDataSetChanged();
                 newsFeedListAdapterFeatured.notifyDataSetChanged();
@@ -109,20 +125,24 @@ public class NewsFeedFragment extends Fragment {
                 Iterator<DataSnapshot> it = dataSnapshot.getChildren().iterator();
                 while (it.hasNext()) {
                     DataSnapshot eventId = (DataSnapshot) it.next();
+                    String eventKey = eventId.getKey();
                     EventInfo event = eventId.getValue(EventInfo.class);
                     String tempeventDate = event.getDate().substring(2,4);
                     int eventDate = Integer.parseInt(tempeventDate);
                     if(eventDate==today){
                         tempNamesToday.add(event.getOrganisation());
                         tempDescToday.add(event.getDescription());
+                        todayEventKeys.add(eventKey);
                     }
                     if(eventDate==upcomingDate){
                         tempNamesUpcoming.add(event.getOrganisation());
                         tempDescUpcoming.add(event.getDescription());
+                        upcomingEventKeys.add(eventKey);
                     }
                     if(event.getFeatured().equals("yes")){
                         tempNamesFeatured.add(event.getOrganisation());
                         tempDescFeatured.add(event.getDescription());
+                        featuredEventKeys.add(eventKey);
                     }
 
                 }
@@ -192,6 +212,28 @@ public class NewsFeedFragment extends Fragment {
                 checkedStatusFeatured=1;
             }
         });
+
+        mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(checkedStatusToday==1){
+                    NewsFeedEvents selectedItem = newsFeedToday.get(position);
+                    String keySelected = selectedItem.getEventKey();
+                    Toast.makeText(faActivity, "You have selected " + keySelected, Toast.LENGTH_SHORT).show();
+                }
+                else if (checkedStatusUpcoming==1){
+                    NewsFeedEvents selectedItem = newsFeedUpcoming.get(position);
+                    String keySelected = selectedItem.getEventKey();
+                    Toast.makeText(faActivity, "You have selected " + keySelected, Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    NewsFeedEvents selectedItem = newsFeedFeatured.get(position);
+                    String keySelected = selectedItem.getEventKey();
+                    Toast.makeText(faActivity, "You have selected " + keySelected, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         return v;
     }
 }

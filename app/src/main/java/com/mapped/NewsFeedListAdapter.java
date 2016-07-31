@@ -49,6 +49,8 @@ public class NewsFeedListAdapter extends ArrayAdapter<NewsFeedEvents> {
         }
 
         if(events.size()==0){
+            RelativeLayout loader = (RelativeLayout) view.findViewById(R.id.loadingPanelNewsFeed);
+            loader.setVisibility(View.GONE);
             return convertView;
         }
         else
@@ -83,7 +85,6 @@ public class NewsFeedListAdapter extends ArrayAdapter<NewsFeedEvents> {
             }
             return convertView;
         }
-
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;

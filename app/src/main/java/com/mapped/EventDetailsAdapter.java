@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 
 public class EventDetailsAdapter extends ArrayAdapter {
@@ -32,6 +36,11 @@ public class EventDetailsAdapter extends ArrayAdapter {
         }
 
         EventInfo currentDay = eventsOfDay.get(position);
+
+        Button infoButton = (Button) convertView.findViewById(R.id.infoButton);
+        infoButton.setTag(position);
+
+        infoButton.setOnClickListener(myButtonClickListener);
 
         LinearLayout colorCode = (LinearLayout) convertView.findViewById(R.id.eventColorCode);
 
@@ -66,7 +75,15 @@ public class EventDetailsAdapter extends ArrayAdapter {
         presenterName.setText(currentDay.getPresenter_name());
 
         return convertView;
-
-
     }
+
+    private View.OnClickListener myButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int position = (Integer) v.getTag();
+            EventInfo selectedEvent = eventsOfDay.get(position);
+            Toast.makeText(v.getContext(), "You pressed the i button of " + selectedEvent.getEventKey(), Toast.LENGTH_LONG).show();
+        }
+    };
+
 }
